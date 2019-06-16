@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualRecognition.API", "VisualRecognition\VisualRecognition.API.csproj", "{D41C59ED-F9AF-4379-857C-7CDD8851ED1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualRecognition.Domain", "VisualRecognition.Domain\VisualRecognition.Domain.csproj", "{18BDA2B0-F49A-454B-955F-0BAB7113A99C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualRecognition.Domain", "VisualRecognition.Domain\VisualRecognition.Domain.csproj", "{18BDA2B0-F49A-454B-955F-0BAB7113A99C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
