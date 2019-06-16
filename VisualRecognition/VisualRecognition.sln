@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualRecognition.API", "Vi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualRecognition.Domain", "VisualRecognition.Domain\VisualRecognition.Domain.csproj", "{18BDA2B0-F49A-454B-955F-0BAB7113A99C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "image-example", "image-example", "{70BB3F3E-E793-4AC9-BEF6-D462AB1A2191}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\pedro.araujo.correia\Desktop\640px-IBM_VGA_90X8941_on_PS55.jpg = ..\..\..\Users\pedro.araujo.correia\Desktop\640px-IBM_VGA_90X8941_on_PS55.jpg
+		..\..\..\Users\pedro.araujo.correia\Desktop\giraffe-classify.jpg = ..\..\..\Users\pedro.araujo.correia\Desktop\giraffe-classify.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

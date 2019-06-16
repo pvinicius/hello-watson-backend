@@ -1,6 +1,9 @@
-﻿namespace VisualRecognition.Domain.Interfaces.DomainServices
+﻿using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
+
+namespace VisualRecognition.Domain.Interfaces.DomainServices
 {
     public interface IRecognitionService
     {
+        ClassifiedImages Get();
     }
 }

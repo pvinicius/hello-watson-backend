@@ -8,7 +8,12 @@
   <ItemGroup>
     <PackageReference Include="IBM.WatsonDeveloperCloud" Version="2.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VisualRecognition.Domain\VisualRecognition.Domain.csproj" />
   </ItemGroup>
 
 </Project>
