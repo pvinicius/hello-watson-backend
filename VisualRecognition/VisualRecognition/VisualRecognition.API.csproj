@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VisualRecognition.Domain\VisualRecognition.Domain.csproj" />
+    <ProjectReference Include="..\VisualRecognition.Infrastructure\VisualRecognition.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

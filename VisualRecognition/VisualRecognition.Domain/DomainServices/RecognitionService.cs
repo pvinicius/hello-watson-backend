@@ -55,6 +55,7 @@ namespace VisualRecognition.Domain.DomainServices
             return detectedFaces;
         }
 
+        #region private methods
         private VisualRecognitionService StartService()
         {
             TokenOptions tokenOptions = new TokenOptions()
@@ -67,5 +68,6 @@ namespace VisualRecognition.Domain.DomainServices
 
             return service;
         }
+        #endregion
     }
 }
