@@ -20,10 +20,17 @@ namespace VisualRecognition.API.Controllers
 
         #region Methods
         [HttpGet]
-        [Route("visual")]
-        public ActionResult<ClassifiedImages> Get()
+        [Route("classify")]
+        public ActionResult<ClassifiedImages> Classify()
         {
-            var result = _recognitionService.Get();
+            var result = _recognitionService.Classify();
+            return Ok(result);
+        }
+        [HttpGet]
+        [Route("detected-faces")]
+        public ActionResult<DetectedFaces> DetectedFaces()
+        {
+            var result = _recognitionService.DetectedFaces();
             return Ok(result);
         }
         #endregion
