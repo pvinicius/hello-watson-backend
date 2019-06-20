@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VisualRecognition.Domain.DomainServices;
+using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 
 namespace VisualRecognition.API
@@ -26,6 +27,7 @@ namespace VisualRecognition.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(_configuration);
+            services.Configure<Token>(_configuration.GetSection("WatsonCredentials"));
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

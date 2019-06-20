@@ -5,7 +5,7 @@ using VisualRecognition.Domain.Interfaces.DomainServices;
 namespace VisualRecognition.API.Controllers
 {
     [Route("api/[controller]")]
-    public class RecognitionController : Controller
+    public class RecognitionController : ControllerBase
     {
         #region Attributes
         private readonly IRecognitionService _recognitionService;

@@ -4,77 +4,68 @@ using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 using System.IO;
 using System.Collections.Generic;
+using VisualRecognition.Domain.Entities;
+using Microsoft.Extensions.Options;
 
 namespace VisualRecognition.Domain.DomainServices
 {
     public class RecognitionService : IRecognitionService
     {
+        private readonly IOptions<Token> _token;
+        public RecognitionService(IOptions<Token> token)
+        {
+            _token = token;
+        }
         public ClassifiedImages Classify()
         {
-            try
+            VisualRecognitionService service = StartService();
+            ClassifiedImages classifiedImages;
+
+            var imagePath = @"C:\Users\pedro.araujo.correia\Pictures\arroz.jpg";
+            using (FileStream fs = File.OpenRead(imagePath))
             {
-                const string VersionDate = "2018-03-19";
-                TokenOptions tokenOptions = new TokenOptions()
-                {
-                    IamApiKey = "Mb2XLMvQdUWiVhOopDZ9I9-5VCjdvpJ07Mn4bplsChaO",
-                    ServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api",
-                };
-
-                var service = new VisualRecognitionService(tokenOptions, VersionDate);
-
-                ClassifiedImages classifiedImages;
-
-                var imagePath = @"C:\Users\pedro.araujo.correia\Pictures\arroz.jpg";
-                using (FileStream fs = File.OpenRead(imagePath))
-                {
-                    classifiedImages = service.Classify
-                    (
-                        classifierIds: new List<string>() { "food" },
-                        imagesFile: fs,
-                        imagesFileContentType: "image/jpeg",
-                        threshold: 0.5f,
-                        acceptLanguage: "en-US"
-                    );
-                }
-
-                return classifiedImages;
+                classifiedImages = service.Classify
+                (
+                    classifierIds: new List<string>() { "food" },
+                    imagesFile: fs,
+                    imagesFileContentType: "image/jpeg",
+                    threshold: 0.5f,
+                    acceptLanguage: "en-US"
+                );
             }
-            catch (System.Exception)
-            {
-                throw;
-            }
+
+            return classifiedImages;
+
         }
         public DetectedFaces DetectedFaces()
         {
-            try
+            VisualRecognitionService service = StartService();
+            DetectedFaces detectedFaces;
+
+            var imagePath = @"C:\Users\pedro.araujo.correia\Pictures\face-2.jpg";
+            using (FileStream fs = File.OpenRead(imagePath))
             {
-                const string VersionDate = "2018-03-19";
-                TokenOptions tokenOptions = new TokenOptions()
-                {
-                    IamApiKey = "Mb2XLMvQdUWiVhOopDZ9I9-5VCjdvpJ07Mn4bplsChaO",
-                    ServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api",
-                };
-
-                var service = new VisualRecognitionService(tokenOptions, VersionDate);
-
-                DetectedFaces detectedFaces;
-
-                var imagePath = @"C:\Users\pedro.araujo.correia\Pictures\face-2.jpg";
-                using (FileStream fs = File.OpenRead(imagePath))
-                {
-                    detectedFaces = service.DetectFaces
-                    (
-                        imagesFile: fs,
-                        imagesFileContentType: "image/jpeg",
-                        acceptLanguage: "en-US"
-                    );
-                }
-                return detectedFaces;
+                detectedFaces = service.DetectFaces
+                (
+                    imagesFile: fs,
+                    imagesFileContentType: "image/jpeg",
+                    acceptLanguage: "en-US"
+                );
             }
-            catch (System.Exception)
+            return detectedFaces;
+        }
+
+        private VisualRecognitionService StartService()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
             {
-                throw;
-            }
+                IamApiKey = _token.Value.IamApiKey,
+                ServiceUrl = _token.Value.ServiceUrl,
+            };
+
+            var service = new VisualRecognitionService(tokenOptions, _token.Value.VersionDate);
+
+            return service;
         }
     }
 }
