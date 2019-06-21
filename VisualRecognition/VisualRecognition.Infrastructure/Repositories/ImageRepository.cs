@@ -13,6 +13,8 @@ namespace VisualRecognition.Infrastructure.Repositories
         {
             _imageContext = imageContext;
         }
+
+        #region methods
         public Image Get(int id)
         {
             throw new System.NotImplementedException();
@@ -51,5 +53,6 @@ namespace VisualRecognition.Infrastructure.Repositories
         {
             throw new System.NotImplementedException();
         }
+        #endregion
     }
 }

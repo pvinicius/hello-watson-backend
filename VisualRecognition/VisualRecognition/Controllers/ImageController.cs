@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 
@@ -21,14 +20,14 @@ namespace VisualRecognition.API.Controllers
 
         #region Methods
         [HttpGet]
-        public ActionResult<IEnumerable<Image>> GetAll()
+        public IActionResult GetAll()
         {
             var entities = _imageService.GetAll();
             return Ok(entities);
         }
 
         [HttpPost]
-        public ActionResult<Image> Post(Image entity)
+        public IActionResult Post([FromBody]Image entity)
         {
             entity = _imageService.Post(entity);
             return Ok(entity);

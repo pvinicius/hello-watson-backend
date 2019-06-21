@@ -7,8 +7,8 @@ namespace VisualRecognition.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ImageId { get; private set; }
-        public string ImagePath { get; private set; }
-        public string ImageName { get; private set; }
+        public int ImageId { get; set; }
+        public string ImagePath { get; set; }
+        public string ImageName { get; set; }
     }
 }
