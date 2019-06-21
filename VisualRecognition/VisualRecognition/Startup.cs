@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using VisualRecognition.Domain.DomainServices;
 using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
+using VisualRecognition.Domain.Interfaces.Repositories;
 using VisualRecognition.Infrastructure.Contexts;
+using VisualRecognition.Infrastructure.Repositories;
 
 namespace VisualRecognition.API
 {
@@ -25,11 +27,14 @@ namespace VisualRecognition.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(_configuration);
-            services.Configure<Token>(_configuration.GetSection("WatsonCredentials"));
             services.AddDbContext<ImageContext>(x => x.UseSqlServer(_configuration["ConnectionString:connection"]));
+            services.Configure<Token>(_configuration.GetSection("WatsonCredentials"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IRecognitionService, RecognitionService>();
+
+            services.AddScoped<IImageRepository, ImageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,9 +12,12 @@ namespace VisualRecognition.Domain.DomainServices
     public class RecognitionService : IRecognitionService
     {
         private readonly IOptions<Token> _token;
-        public RecognitionService(IOptions<Token> token)
+        private readonly IImageService _imageService;
+        public RecognitionService(IOptions<Token> token,
+                                  IImageService imageService)
         {
             _token = token;
+            _imageService = imageService;
         }
         public ClassifiedImages Classify()
         {
