@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VisualRecognition.Domain.Entities;
+using VisualRecognition.Domain.DTO;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 
 namespace VisualRecognition.API.Controllers
@@ -27,9 +27,10 @@ namespace VisualRecognition.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Image entity)
+        [Route("upload")]
+        public IActionResult Post([FromBody] string file)
         {
-            entity = _imageService.Post(entity);
+            var entity = _imageService.Post(file);
             return Ok(entity);
         }
         #endregion

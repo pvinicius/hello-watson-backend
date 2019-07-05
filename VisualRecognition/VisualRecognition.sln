@@ -10,13 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "image-example", "image-example", "{70BB3F3E-E793-4AC9-BEF6-D462AB1A2191}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Users\pedro.araujo.correia\Desktop\640px-IBM_VGA_90X8941_on_PS55.jpg = ..\..\..\Users\pedro.araujo.correia\Desktop\640px-IBM_VGA_90X8941_on_PS55.jpg
-		..\..\..\Users\pedro.araujo.correia\Desktop\arroz.jpg = ..\..\..\Users\pedro.araujo.correia\Desktop\arroz.jpg
-		..\..\..\Users\pedro.araujo.correia\Pictures\face-1.jpg = ..\..\..\Users\pedro.araujo.correia\Pictures\face-1.jpg
-		..\..\..\Users\pedro.araujo.correia\Pictures\face-2.jpg = ..\..\..\Users\pedro.araujo.correia\Pictures\face-2.jpg
-		..\..\..\Users\pedro.araujo.correia\Desktop\giraffe-classify.jpg = ..\..\..\Users\pedro.araujo.correia\Desktop\giraffe-classify.jpg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualRecognition.Infrastructure", "VisualRecognition.Infrastructure\VisualRecognition.Infrastructure.csproj", "{D3C04A08-3277-4452-8B4D-B8DD91A747A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualRecognition.Infrastructure", "VisualRecognition.Infrastructure\VisualRecognition.Infrastructure.csproj", "{D3C04A08-3277-4452-8B4D-B8DD91A747A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

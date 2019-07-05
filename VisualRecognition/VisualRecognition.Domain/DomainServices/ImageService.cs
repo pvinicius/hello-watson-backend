@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using VisualRecognition.Domain.DTO;
 using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 using VisualRecognition.Domain.Interfaces.Repositories;
@@ -16,9 +17,11 @@ namespace VisualRecognition.Domain.DomainServices
         {
             return _imageRepository.GetAll();
         }
-        public Image Post(Image entity)
+        public Image Post(string file)
         {
+            var entity = new Image(file);
             entity = _imageRepository.Add(entity);
+
             return entity;
         }
     }

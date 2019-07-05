@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using VisualRecognition.Domain.DomainServices;
 using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
@@ -29,7 +32,31 @@ namespace VisualRecognition.API
             services.AddSingleton(_configuration);
             services.AddDbContext<ImageContext>(x => x.UseSqlServer(_configuration["ConnectionString:connection"]));
             services.Configure<Token>(_configuration.GetSection("WatsonCredentials"));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.Formatting = Formatting.Indented;
+                })
+                .AddJsonOptions(json =>
+                {
+                    json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
+            });
+
+            services.Configure<MvcOptions>(options => options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAllHeaders")));
 
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IRecognitionService, RecognitionService>();
