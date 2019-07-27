@@ -4,7 +4,7 @@ namespace VisualRecognition.Domain.Interfaces.DomainServices
 {
     public interface IRecognitionService
     {
-        ClassifiedImages Classify();
+        ClassifiedImages Classify(string imagePath);
         DetectedFaces DetectedFaces();
     }
 }

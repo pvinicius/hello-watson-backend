@@ -14,7 +14,7 @@ namespace VisualRecognition.Domain.Entities
         public Image(string file)
         {
             ImagePath = file;
-            ImageName = string.Format("{0} - {1}", DateTime.Now, file);
+            ImageName = string.Format("{0}", DateTime.Now);
         }
 
         [Key]

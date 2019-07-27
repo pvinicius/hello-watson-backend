@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using VisualRecognition.Domain.DTO;
 using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 using VisualRecognition.Domain.Interfaces.Repositories;

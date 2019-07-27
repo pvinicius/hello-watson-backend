@@ -12,30 +12,26 @@ namespace VisualRecognition.Domain.DomainServices
     public class RecognitionService : IRecognitionService
     {
         private readonly IOptions<Token> _token;
-        private readonly IImageService _imageService;
         public RecognitionService(IOptions<Token> token,
                                   IImageService imageService)
         {
             _token = token;
-            _imageService = imageService;
         }
-        public ClassifiedImages Classify()
+        public ClassifiedImages Classify(string imagePath)
         {
             VisualRecognitionService service = StartService();
             ClassifiedImages classifiedImages;
 
-            var imagePath = @"C:\Users\pedro.araujo.correia\Pictures\arroz.jpg";
-            using (FileStream fs = File.OpenRead(imagePath))
-            {
-                classifiedImages = service.Classify
-                (
-                    classifierIds: new List<string>() { "food" },
-                    imagesFile: fs,
-                    imagesFileContentType: "image/jpeg",
-                    threshold: 0.5f,
-                    acceptLanguage: "en-US"
-                );
-            }
+            byte[] data = System.Convert.FromBase64String(imagePath);
+            var base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
+
+            classifiedImages = service.Classify
+            (
+                url: base64Decoded,
+                imagesFileContentType: "image/jpeg",
+                threshold: 0.5f,
+                acceptLanguage: "pt-BR"
+            );
 
             return classifiedImages;
 

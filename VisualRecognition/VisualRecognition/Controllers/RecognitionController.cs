@@ -1,5 +1,6 @@
 ﻿using IBM.WatsonDeveloperCloud.VisualRecognition.v3.Model;
 using Microsoft.AspNetCore.Mvc;
+using VisualRecognition.Domain.Entities;
 using VisualRecognition.Domain.Interfaces.DomainServices;
 
 namespace VisualRecognition.API.Controllers
@@ -19,11 +20,11 @@ namespace VisualRecognition.API.Controllers
         #endregion
 
         #region Methods
-        [HttpGet]
+        [HttpPost]
         [Route("classify")]
-        public ActionResult<ClassifiedImages> Classify()
+        public IActionResult Classify([FromBody] string imagePath)
         {
-            var result = _recognitionService.Classify();
+            var result = _recognitionService.Classify(imagePath);
             return Ok(result);
         }
         [HttpGet]
